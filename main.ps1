@@ -1,15 +1,18 @@
-﻿#Features
-#Read printer settings from printer_state_monitor_list.csv
-#output printer errors to printer_state_monitor_log.txt
-#email printer error log to email address
-#powershell reminder: powershell passes parameters by not using parentheses.
-
-#Version
+#Version 1
 #Powershell 5.1.14393.1914
 
 #Date: 12/9/2017
 
 #author: AIC
+
+
+#Features
+#Read printer settings from printer_state_monitor_list.csv
+#output printer errors to printer_state_monitor_log.txt
+#email printer error log to email address
+#powershell reminder: powershell passes parameters by not using parentheses.
+
+
 
 #Sections: 
 #Functions - the procedural code relies on these
