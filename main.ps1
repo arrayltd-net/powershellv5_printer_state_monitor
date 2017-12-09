@@ -181,7 +181,7 @@ $Printers = Get-WmiObject -class Win32_Printer
 for ($i=0; $i -lt $printers.Count; $i++ ){
  
     #this if test returns non-zero as long as there is a printer listed in $printersettings. other printers are ignored completely
-        if($CurrentPrinterSettings = Get-PrinterSettings $printers[$i] $printersettings){
+    if($CurrentPrinterSettings = Get-PrinterSettings $printers[$i] $printersettings){
       
         #populate unfilled values with default values
         $CurrentPrinterSettings.psobject.properties | ForEach-Object{
@@ -189,9 +189,7 @@ for ($i=0; $i -lt $printers.Count; $i++ ){
           if(!$_.value){
             $_.value = $defaultprintersettings.$($_.Name)
           }
-        
         }           
-        
      
       #compare current day and current time to the settings file. set variable true if it's outside of operating hours
       $is_inactive = isWithinDayandTimeRange $CurrentPrinterSettings.schedule $CurrentPrinterSettings.starttime $CurrentPrinterSettings.stoptime
@@ -210,13 +208,10 @@ for ($i=0; $i -lt $printers.Count; $i++ ){
 
       if($codesToIgnore -notcontains $code){
        $code_is_error = 1
-       
       }
       
      if($code_is_error -and !$is_inactive){
-    
-        $printers_with_errors_ht.add($CurrentPrinterSettings.name, $code)
-     
+       $printers_with_errors_ht.add($CurrentPrinterSettings.name, $code)
      }
    }
  }
@@ -226,7 +221,6 @@ for ($i=0; $i -lt $printers.Count; $i++ ){
 #build text file using data and email it if there is data in the hash table
 
 if($printers_with_errors_ht.Count -ge 1){
-
     $email_body_heading | out-file $text_output
     ""  + $OFS| out-file -append $text_output
 
