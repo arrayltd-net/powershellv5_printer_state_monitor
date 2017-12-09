@@ -11,6 +11,27 @@
 
 #author: AIC
 
+#Sections: 
+#Functions - the procedural code relies on these
+#Variables - set script path and email options
+#Procedural code - loops through printers and finds those with errors. 
+
+#The CSV file contains printer settings: 
+
+
+#The first row contains default settings, defined as a printer, which will overwrite all values except #appenddefaultcodes (they will be appended)
+#If values are defined for printers in the file they will take priority and the default values will be ignored.
+
+#name	 -  Data: Name of Printer. Only printers listed will be monitored 
+#appenddefaultcodes	- Data: Whether or not to include the default printer's codestoignore. 0 or 1. Allows one to exempt a printer from
+#     ignoring the default codes by setting to 0. 
+#codestoignore	- Data: Codes that will not trigger an alert. Codes will be added to default printer's codes if appenddefaultcodes is 
+#      set to 1 for the printer. If appenddefaultcodes is set to 0 then only these codes here will trigger an alert
+#schedule	 -  Data: Days of week that will printer will be monitored. Default value will be used if none defined
+#starttime - 	Data: Military time of day to start monitoring printer. Default value will be used if none defined
+#stoptime  -  Data: Military time of day to start monitoring printer. Default value will be used if none defined
+
+
 
 
 #*************
