@@ -5,6 +5,13 @@
 
 #author: AIC, www.arrayltd.net
 
+#Use:
+#Place main.ps1 and printer_state_monitor.csv in a folder c:\powershell\printer_state.
+#If using a different directory modify the $homepath variable
+#Schedule this script to run periodically to make sure printers aren't in an error state.
+#The value is the csv file will need to be modified to suit your needs. Once change would be to add 0 to the codestoignore field
+#since that's not an error.
+
 #Features
 #Read printer settings from printer_state_monitor_list.csv
 #output printer errors to printer_state_monitor_log.txt
