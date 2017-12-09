@@ -1,1 +1,1 @@
-1. Remove blank spaces from CSV values and empty cells that have a space. I don't know if this is necessary.
+1. Data integrity: Remove blank spaces from CSV values and empty cells that have a space. I don't know if this is necessary.
