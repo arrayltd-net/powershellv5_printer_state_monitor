@@ -1,0 +1,6 @@
+name,appenddefaultcodes,codestoignore,schedule,starttime,stoptime
+default_printer_settings,,"100,200","Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",8:00,12:00
+TSTING, , , ,3:00,17:00
+PrimoPDF, ,"1,2,128","Monday,Tuesday,Friday",8:00,13:00
+Generic / Text Only,1,"1,2,128",,4:00,16:00
+Send To OneNote 2016,1,"1,2,128",,4:00,16:00
