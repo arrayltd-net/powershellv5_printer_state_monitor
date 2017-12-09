@@ -3,7 +3,7 @@
 
 #Date: 12/9/2017
 
-#author: AIC
+#author: AIC, www.arrayltd.net
 
 
 #Features
