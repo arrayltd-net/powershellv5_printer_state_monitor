@@ -5,14 +5,11 @@
 
 #author: AIC, www.arrayltd.net
 
-
 #Features
 #Read printer settings from printer_state_monitor_list.csv
 #output printer errors to printer_state_monitor_log.txt
 #email printer error log to email address
 #powershell reminder: powershell passes parameters by not using parentheses.
-
-
 
 #Sections: 
 #Functions - the procedural code relies on these
@@ -20,8 +17,6 @@
 #Procedural code - loops through printers and finds those with errors. 
 
 #The CSV file contains printer settings: 
-
-
 #The first row contains default settings, defined as a printer, which will overwrite all values except #appenddefaultcodes (they will be appended)
 #If values are defined for printers in the file they will take priority and the default values will be ignored.
 
@@ -34,9 +29,6 @@
 #starttime - 	Data: Military time of day to start monitoring printer. Default value will be used if none defined
 #stoptime  -  Data: Military time of day to start monitoring printer. Default value will be used if none defined
 
-
-
-
 #*************
 #*************
 #FUNCTIONS
@@ -44,8 +36,7 @@
 #*************
 
 Function Get-PrinterSettings($printer,$printersettings) {
-
-  for($j=0; $j -lt $printersettings.Count; $j++){
+for($j=0; $j -lt $printersettings.Count; $j++){
   [string]$a = $printers[$i].name
   [string]$b = $printersettings[$j].name
      if($b -like $a){
@@ -58,31 +49,26 @@ Function Get-PrinterSettings($printer,$printersettings) {
  
  
  Function isWithinDayandTimeRange($schedule, $starttime, $stoptime){
-    $fail = 0
-   
-    
-    if($schedule.split(",") -notcontains (get-date).dayofweek){
+   $fail = 0
+   if($schedule.split(",") -notcontains (get-date).dayofweek){
        $fail = 1
-    }
-    
-    if(($(get-date) -le $starttime)) {
-        $amfail = 1
-       
-       }
-    
-    if(($(get-date) -ge $stoptime)) {
-        $pmfail = 1
-        
-       }    
-    
-    if ($amfail -or $pmfail) {
-        $fail = 1
-       
-    }
-    
-    return $fail
+   }
+
+   if(($(get-date) -le $starttime)) {
+       $amfail = 1
+   }
+
+   if(($(get-date) -ge $stoptime)) {
+       $pmfail = 1
+  }    
+
+  if ($amfail -or $pmfail) {
+       $fail = 1
+  }
+
+      return $fail
  
-     }
+}
         
  
    
@@ -116,7 +102,7 @@ Function Get-PrinterSettings($printer,$printersettings) {
         6777216 {"Power save"}
       
         default{}
-        }   
+   }   
 }
  
 
@@ -125,8 +111,6 @@ Function Get-PrinterSettings($printer,$printersettings) {
 #END FUNCTIONS
 #*************
 #*************
-
-
 
 #Define Variables
 $homepath = "c:\powershell\printer_state"
@@ -141,7 +125,6 @@ $secstr = New-Object -TypeName System.Security.SecureString
 $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}
 $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $username, $secstr
 
-
 #mail server settings:  
 $smtpserver= "smtp.gmail.com" 
 $recipient = "recipient@recipient.com" 
@@ -152,12 +135,9 @@ $smtpport = "587"
 # -UseSSL is specified in send-mailmessage command
 #End Mail server
 
-
 #get printer list text file
 $PrinterSettings = Import-Csv "$printerlistfile"
 $defaultprintersettings = $printersettings[0]
-
-
 
 #this array will store printers that have errors - ?
 $printers_with_errors_ht=@{} #new array to store printers that return errors
@@ -165,27 +145,14 @@ $printers_with_errors_ht=@{} #new array to store printers that return errors
 #Get printer objects on system an make an array of them. These are pulled from the system
 $Printers = Get-WmiObject -class Win32_Printer
 
-
-
-#Functions (search for this text to jump to this section
-
-#import functions file
-#. "$homepath\functions.ps1"
-
-
-
-
 #Procedural
 
 #This For loop is used to begin the processing on each printer found on the system and in the $printers array of objects
 for ($i=0; $i -lt $printers.Count; $i++ ){
- 
     #this if test returns non-zero as long as there is a printer listed in $printersettings. other printers are ignored completely
     if($CurrentPrinterSettings = Get-PrinterSettings $printers[$i] $printersettings){
-      
         #populate unfilled values with default values
         $CurrentPrinterSettings.psobject.properties | ForEach-Object{
-       
           if(!$_.value){
             $_.value = $defaultprintersettings.$($_.Name)
           }
@@ -200,7 +167,6 @@ for ($i=0; $i -lt $printers.Count; $i++ ){
       $error_code = 0
       
       #build an array containing the default and the 
-      
       [array]$codestoignore = $CurrentPrinterSettings.codestoignore.split(",")
       if($CurrentPrinterSettings.appenddefaultcodes -eq 1){
         $codesToIgnore += $defaultprintersettings.codestoignore.split(",")
