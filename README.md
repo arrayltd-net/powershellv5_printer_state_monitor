@@ -16,7 +16,7 @@ stoptime - stop time to monitor
 
 The same values can be modified for each printer
 
-If running an older version of powershell that doesn't recognize the get-content's -raw parameter, replace the existing final lines of code with this: 
+If running an older version of powershell that doesn't recognize the get-content's -raw parameter, replace the existing final lines of code with this to manually insert line breaks and carriage returns after each line in the log before emailing it: 
 
     
  #send email 
