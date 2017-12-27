@@ -18,6 +18,7 @@ The same values can be modified for each printer
 
 If running an older version of powershell that doesn't recognize the get-content's -raw parameter, replace the existing final lines of code with this: 
 
+    
  #send email 
     
    $body =""
@@ -32,4 +33,4 @@ If running an older version of powershell that doesn't recognize the get-content
    
      Send-MailMessage -from $sender -to $recipient -smtpserver $smtpserver -subject $subject -body $body  -Verbose
 
-}    
+}
